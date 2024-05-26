@@ -37,9 +37,9 @@ class OutstandingDoctor extends Component {
     }
   };
 
-  handleSeeMoreDoctors = () => {
+  handleOnClickSeeMoreDoctor = () => {
     if (this.props.history) {
-      this.props.history.push(`/list-outstanding-doctor`);
+      this.props.history.push(`/list-oustanding-doctor`);
     }
   };
 
@@ -57,7 +57,7 @@ class OutstandingDoctor extends Component {
             <Button
               variant="contained"
               className="outstanding-doctor-btn"
-              onClick={this.handleSeeMoreDoctors}
+              onClick={() => this.handleOnClickSeeMoreDoctor()}
             >
               <FormattedMessage id="homepage.more-infor" />
             </Button>
