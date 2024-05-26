@@ -1,0 +1,34 @@
+/* Slide.css */
+.slide-poster {
+    width: 100%;
+  }
+  
+  .poster__item {
+    position: relative;
+    height: 500px; /* Set the height of each slide */
+  }
+  
+  .poster__image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Ensure the image covers the entire slide */
+  }
+  
+//   .overlay {
+//     position: absolute;
+//     top: 0;
+//     left: 0;
+//     width: 100%;
+//     height: 100%;
+//     background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent overlay */
+//     display: flex;
+//     align-items: center;
+//     justify-content: center;
+//   }
+  
+//   .overlay-content {
+//     color: white;
+//     text-align: center;
+//     padding: 20px;
+//   }
+  

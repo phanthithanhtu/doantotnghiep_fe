@@ -1,0 +1,137 @@
+/* General Section Styling */
+.outstanding-doctor-section {
+  padding: 40px 20px;
+  background-color: #f5f5f5;
+}
+
+/* Container Styling */
+.outstanding-doctor-container {
+  margin: auto;
+  max-width: 1200px;
+  background-color: #fff;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+}
+
+/* Header Styling */
+.outstanding-doctor-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px;
+  border-bottom: 2px solid #eee;
+}
+
+.outstanding-doctor-title {
+  font-weight: bold;
+  color: #333;
+}
+
+.outstanding-doctor-btn {
+  background-color: #1976d2;
+  color: #fff;
+  transition: background-color 0.3s ease;
+}
+
+.outstanding-doctor-btn:hover {
+  background-color: #105ba3;
+}
+
+/* Body Styling */
+.outstanding-doctor-body {
+  padding: 20px;
+}
+
+/* Individual Item Styling */
+.outstanding-doctor-item {
+  position: relative;
+  cursor: pointer;
+  overflow: hidden;
+  transition: transform 0.7s ease;
+}
+
+.outstanding-doctor-item:hover {
+  transform: scale(1.05);
+}
+
+.outstanding-doctor-item-border {
+    margin: 20px;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  overflow: hidden;
+  background-color: #fafafa;
+  transition: box-shadow 0.3s ease;
+}
+
+.outstanding-doctor-item-border:hover {
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+}
+
+.outstanding-doctor-item-bg {
+  position: relative;
+  width: 100%;
+  padding-top: 100%;
+  background-color: #e0e0e0;
+}
+
+.outstanding-doctor-bg-image {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-size: cover;
+  background-position: center;
+  transition: transform 0.9s ease;
+}
+
+// .outstanding-doctor-item:hover .outstanding-doctor-bg-image {
+//   transform: scale(1.05);
+// }
+
+.outstanding-doctor-position {
+  padding: 10px;
+  text-align: center;
+}
+
+.outstanding-doctor-position .MuiTypography-root:first-of-type {
+  font-weight: bold;
+  color: #444;
+}
+
+.outstanding-doctor-position .MuiTypography-root:last-of-type {
+  color: #888;
+}
+
+/* Overlay and Icon Styling */
+.outstanding-doctor-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.outstanding-doctor-item:hover .outstanding-doctor-overlay {
+  opacity: 1;
+}
+
+.outstanding-doctor-icon {
+  position: absolute;
+  bottom: 20px;
+  right: -60px;
+  color: #fff;
+  font-size: 24px;
+  transition: right 1s ease;
+}
+
+.outstanding-doctor-item:hover .outstanding-doctor-icon {
+  right: 20px;
+}

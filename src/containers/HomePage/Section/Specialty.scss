@@ -1,0 +1,110 @@
+/* CustomSpecialty.scss */
+.custom-section-share {
+  padding: 20px;
+  background-color: #f5f5f5;
+}
+
+.custom-section-container {
+  margin: auto;
+  max-width: 1200px;
+  background-color: #fff;
+  // border-radius: 10px;
+  // box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  // overflow: hidden;
+}
+
+.custom-section-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+   padding: 20px;
+  // border-bottom: 2px solid #eee;
+}
+
+.custom-title-section {
+  font-weight: bold;
+  color: #333;
+}
+
+.custom-btn-section {
+  
+  color: #fff;
+  transition: background-color 0.3s ease;
+}
+
+.custom-btn-section:hover {
+  background-color: #105ba3;
+}
+
+.custom-section-body {
+  padding: 20px;
+}
+
+.custom-specialty-card {
+  cursor: pointer;
+  transition: transform 0.3s ease;
+  position: relative;
+  
+  height: 150px;
+  width: 150px;
+}
+
+.custom-specialty-card:hover {
+  // transform: scale(2.05);
+  background-color: rgb(24, 78, 195);
+
+}
+
+.custom-image-container {
+  
+  position: relative;
+  height:fit-content;
+  width: fit-content;
+ 
+}
+
+.custom-specialty-image {
+  height: 100%;
+  object-fit: cover;
+  width: 100%;
+}
+
+.custom-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  opacity: 0;
+  // transition: opacity 1.3s ease;
+}
+
+.custom-specialty-card:hover .custom-overlay {
+  opacity: 1;
+}
+
+.custom-specialty-card .MuiCardContent-root {
+  padding: 10px;
+}
+.custom-specialty-card:hover {
+  opacity: 0.9; /* Điều chỉnh độ mờ tùy thích */
+}
+
+.custom-specialty-card:hover .custom-overlay {
+  opacity: 1; /* Giữ opacity của overlay là 1 */
+}
+
+
+.custom-view-icon {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  opacity: 0; /* Ẩn icon ban đầu */
+  transition: opacity 0.3s ease;
+  color: white; /* Đặt màu trắng cho icon */
+}
+
+.custom-specialty-card:hover .custom-view-icon {
+  opacity: 1; /* Hiển thị icon khi hover */
+}
