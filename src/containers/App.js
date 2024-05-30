@@ -6,6 +6,7 @@ import { history } from "../redux";
 import { ToastContainer } from "react-toastify";
 import Doctor from "../routes/Doctor";
 import VerifyEmail from "./Patient/VerifyEmail";
+import { BrowserRouter } from 'react-router-dom';
 
 import {
   userIsAuthenticated,
@@ -72,6 +73,7 @@ class App extends Component {
 
             <div className="content-container">
               <CustomScrollbars style={{ height: "100vh", width: "100%" }}>
+              <BrowserRouter>
                 <Switch>
                   <Route path={path.HOME} exact component={Home} />
                   <Route
@@ -128,6 +130,7 @@ class App extends Component {
                     <NotFound />
                   </Route>
                 </Switch>
+                </BrowserRouter>
               </CustomScrollbars>
             </div>
 

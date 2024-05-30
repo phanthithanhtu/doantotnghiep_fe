@@ -100,9 +100,16 @@ const deleteClinicService = (userId) => {
 const editClinicService = (inputData) => {
   return axios.put("/api/edit-clinic", inputData);
 };
-const deleteUserService = (inputId) => {
-  return axios.delete(`/api/delete-clinic?id=${inputId}`);
+const deleteUserService = (id) => {
+  return axios.request({
+    method: 'delete',
+    url: '/api/delete-user',
+    data: {
+      id: id
+    }
+  });
 };
+
 
 const getAllPatientForDoctor = (data) => {
   return axios.get(
