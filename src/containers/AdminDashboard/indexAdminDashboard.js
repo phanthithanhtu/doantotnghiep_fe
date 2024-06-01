@@ -1,7 +1,6 @@
 // scroll bar
 import "simplebar/src/simplebar.css";
 
-import ReactDOM from "react-dom";
 import { BrowserRouter } from "react-router-domv6";
 import { HelmetProvider } from "react-helmet-async";
 

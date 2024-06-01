@@ -11,6 +11,7 @@ const NotFound = () => {
 
   const handleClickBtn = () => {
     history.push("/");
+    window.location.reload();
   };
   return (
     <>

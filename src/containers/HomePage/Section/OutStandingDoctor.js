@@ -34,12 +34,14 @@ class OutstandingDoctor extends Component {
   handleViewDoctorDetail = (doctor) => {
     if (this.props.history) {
       this.props.history.push(`/detail-doctor/${doctor.id}`);
+      window.location.reload();
     }
   };
 
   handleOnClickSeeMoreDoctor = () => {
     if (this.props.history) {
       this.props.history.push(`/list-oustanding-doctor`);
+      window.location.reload();
     }
   };
 

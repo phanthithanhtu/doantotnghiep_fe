@@ -5,15 +5,11 @@ import Paper from "@material-ui/core/Paper";
 import { makeStyles } from "@material-ui/core/styles";
 import ListItemIcon from "@material-ui/core/ListItemIcon";
 import Typography from "@material-ui/core/Typography";
-import DraftsIcon from "@material-ui/icons/Drafts";
-import SendIcon from "@material-ui/icons/Send";
-import PriorityHighIcon from "@material-ui/icons/PriorityHigh";
 
 import { useState, useEffect } from "react";
 import { useHistory } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 
-import { getAllSpecialty } from "../../../services/userService";
 // import { connect } from "react-redux";
 // import { LANGUAGES } from "../../utils";
 
@@ -94,6 +90,8 @@ const ListOutStandingDoctor = () => {
 
   const handleViewDetailDoctor = (doctor) => {
     history.push(`/detail-doctor/${doctor.id}`);
+    window.location.reload();
+
   };
   const handleOnClickBackHome = () => (event) => {
     // history.goBack

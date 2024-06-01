@@ -7,15 +7,18 @@ import App from './containers/App';
 import * as serviceWorker from './serviceWorker';
 import IntlProviderWrapper from "./hoc/IntlProviderWrapper";
 
-
 import { Provider } from 'react-redux';
 import reduxStore, { persistor } from './redux';
+
+import { BrowserRouter as Router } from 'react-router-dom'; // Import BrowserRouter as Router
 
 const renderApp = () => {
     ReactDOM.render(
         <Provider store={reduxStore}>
             <IntlProviderWrapper>
-                <App persistor={persistor}/>
+                <Router> {/* Wrap App with Router */}
+                    <App persistor={persistor}/>
+                </Router>
             </IntlProviderWrapper>
         </Provider>,
         document.getElementById('root')
@@ -23,7 +26,5 @@ const renderApp = () => {
 };
 
 renderApp();
-// If you want your app to work offline and load faster, you can change
-// unregister() to register() below. Note this comes with some pitfalls.
-// Learn more about service workers: https://bit.ly/CRA-PWA
+
 serviceWorker.unregister();

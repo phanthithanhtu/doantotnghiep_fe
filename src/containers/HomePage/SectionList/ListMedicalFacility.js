@@ -85,11 +85,13 @@ const ListMedicalFacility = () => {
 
   let history = useHistory();
 
-  const handleViewDetailClinic = (clinic) => {
-    history.push(`/detail-clinic/${clinic.id}`);
-  };
+  // const handleViewDetailClinic = (clinic) => {
+  //   history.push(`/detail-clinic/${clinic.id}`);
+  // };
   const handleOnClickBackHome = () => (event) => {
     history.push(`/home`);
+    window.location.reload();
+   
   };
   return (
     <>
@@ -116,7 +118,7 @@ const ListMedicalFacility = () => {
             dataClinics.length > 0 &&
             dataClinics.map((item, index) => {
               return (
-                <div key={index} onClick={() => handleViewDetailClinic(item)}>
+                <a key={index} href="/detail-clinic/${clinic.id}">
                   <MenuItem>
                     <ListItemIcon>
                       <div
@@ -134,7 +136,7 @@ const ListMedicalFacility = () => {
                     </Typography>
                   </MenuItem>
                   <Divider />
-                </div>
+                </a>
               );
             })}
         </MenuList>

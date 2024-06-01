@@ -96,10 +96,12 @@ export default function AccountPopover() {
   const handleNavigateToHome = () => {
     handleClose();
     history.push("/home");
+    window.location.reload();
   };
   const handleLogout = () => {
     dispatch(actions.processLogout()); //mapDispathToProps
     history.push("/home");
+    window.location.reload();
   };
   return (
     <>

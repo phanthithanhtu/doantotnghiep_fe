@@ -121,6 +121,7 @@ class Login extends Component {
                 className="sign-up"
                 onClick={() => {
                   this.props.history.push("/sign-up");
+                  window.location.reload();
                 }}
               >
                 Sign up

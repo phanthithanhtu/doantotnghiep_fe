@@ -1,12 +1,9 @@
 import React from "react";
-import IconButton from "@material-ui/core/IconButton";
 import Menu from "@material-ui/core/Menu";
 import MenuItem from "@material-ui/core/MenuItem";
-import MoreVertIcon from "@material-ui/icons/MoreVert";
 import { useHistory } from "react-router-dom";
 
 import { makeStyles } from "@material-ui/core/styles";
-import { emitter } from "../../utils/emitter";
 
 import { useState, useEffect } from "react";
 
@@ -85,6 +82,7 @@ const HomeMenuSearchSpecialty = (props) => {
     let id = findIdSpecialtyByName(itemName);
     if (history) {
       history.push(`/detail-specialty/${id}`);
+      window.location.reload();
     }
     setOpen(false);
   };

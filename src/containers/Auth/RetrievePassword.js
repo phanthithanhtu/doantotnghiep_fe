@@ -129,6 +129,7 @@ const RetrievePassword = () => {
         if (res && res.errCode === 0) {
           toast.success("Retrieve password succeed!");
           history.push("/login");
+          window.location.reload();
         } else {
           toast.error("Retrieve password error!");
         }

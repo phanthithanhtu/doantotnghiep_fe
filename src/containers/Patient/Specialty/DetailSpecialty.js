@@ -5,7 +5,6 @@ import "./DetailSpecialty.scss";
 import DoctorSchedule from "../Doctor/DoctorSchedule";
 import DoctorExtraInfor from "../Doctor/DoctorExtraInfor";
 import ProfileDoctor from "../Doctor/ProfileDoctor";
-
 import HomeHeader from "../../HomePage/HomeHeader";
 import {
   getAllSpecialtyById,
@@ -72,7 +71,6 @@ class DetailSpecialty extends Component {
           listProvince: dataProvince ? dataProvince : [],
         });
       }
-      //   imageBase64 = new Buffer(user.image, "base64").toString("binary");
     }
   }
 
@@ -80,6 +78,7 @@ class DetailSpecialty extends Component {
     if (this.props.language !== prevProps.language) {
     }
   }
+
   handleOnChangeSelect = async (event) => {
     if (
       this.props.match &&
@@ -113,6 +112,7 @@ class DetailSpecialty extends Component {
       }
     }
   };
+
   render() {
     let { arrDoctorId, dataDetailSpecialty, listProvince } = this.state;
     let { language } = this.props;
@@ -123,7 +123,7 @@ class DetailSpecialty extends Component {
         <div className="detail-specialty-body">
           <div className="description-specialty">
             {dataDetailSpecialty && !_.isEmpty(dataDetailSpecialty) && (
-              <div //neu khong co thuoc tinh nay se in ra noi dung HTML
+              <div
                 dangerouslySetInnerHTML={{
                   __html: dataDetailSpecialty.descriptionHTML,
                 }}
@@ -137,7 +137,9 @@ class DetailSpecialty extends Component {
                 listProvince.map((item, index) => {
                   return (
                     <option key={index} value={item.keyMap}>
-                      {language === LANGUAGES.VI ? item.valueVi : item.valueEn}
+                      {language === LANGUAGES.VI
+                        ? item.valueVi
+                        : item.valueEn}
                     </option>
                   );
                 })}

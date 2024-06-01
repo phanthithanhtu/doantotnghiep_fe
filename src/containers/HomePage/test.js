@@ -1,26 +1,41 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import "./HomeHeader.scss";
-import { FormattedMessage } from "react-intl";
-import { LANGUAGES } from "../../utils";
-
-import { changeLanguageApp } from "../../store/actions/appActions";
 import { withRouter } from "react-router";
-
+import { changeLanguageApp } from "../../store/actions/appActions";
+import { LANGUAGES } from "../../utils";
 import MenuHomeHeader from "./MenuHomeHeader";
 import HomeMenuSearchSpecialty from "./HomeMenuSearchSpecialty";
-import { emitter } from "../../utils/emitter";
-import { Alert } from "reactstrap";
-import Search from "./Search";
 import Slide from "./slide";
+import { FormattedMessage } from "react-intl";
+import "./HomeHeader.scss";
+
 class HomeHeader extends Component {
   constructor() {
     super();
 
     this.state = {
       showMenuSearchSpecialty: false,
+      isScrolled: false,
     };
   }
+
+  componentDidMount() {
+    window.addEventListener("scroll", this.handleScroll);
+  }
+
+  componentWillUnmount() {
+    window.removeEventListener("scroll", this.handleScroll);
+  }
+
+  handleScroll = () => {
+    const scrollTop = window.scrollY;
+    const isScrolled = scrollTop > 50;
+
+    if (isScrolled !== this.state.isScrolled) {
+      this.setState({ isScrolled });
+    }
+  };
+
   handleClickShowHomeMenuSearchSpecialty = () => {
     this.setState({
       showMenuSearchSpecialty: !this.state.showMenuSearchSpecialty,
@@ -29,16 +44,19 @@ class HomeHeader extends Component {
 
   changeLanguage = (language) => {
     this.props.changeLanguageAppRedux(language);
-    //fire redux event: action
   };
-  // returnToHome = () => {
-  //   if (this.props.history) {
-  //     this.props.history.push(`/home`);
-  //   }
-  // };
- 
+
+  returnToHome = () => {
+    if (this.props.history) {
+      this.props.history.push(`/home`);
+      window.location.reload();
+    }
+  };
+
   render() {
-    let language = this.props.language;
+    const { language, isShowBanner } = this.props;
+    const { isScrolled, showMenuSearchSpecialty } = this.state;
+
     const popularMovies = [
       {
         backgroundURL:
@@ -58,16 +76,14 @@ class HomeHeader extends Component {
     ];
 
     return (
-      <>
-        <div className="home-header-container">
+      <div>
+        <div className={`home-header-container ${isScrolled ? "black-bg" : ""}`}>
           <div className="home-header-content">
-
-          <div className="left-content">
- <div className="menu-home-header">
+            <div className="left-content">
+              <a href="/home" className="logo-link">
+                <div className="menu-home-header">
                   <MenuHomeHeader />
                 </div>
-              <a href="/home" className="logo-link">
-               
                 <div className="header-logo"></div>
               </a>
             </div>
@@ -105,23 +121,25 @@ class HomeHeader extends Component {
               <div className="child-content">
                 <div
                   className="search"
-                  onClick={() => this.handleClickShowHomeMenuSearchSpecialty()}
+                  onClick={this.handleClickShowHomeMenuSearchSpecialty}
                 >
                   <i className="fas fa-search"></i>
                   <FormattedMessage id="banner.search">
                     {(placeholder) => (
-                      <input type="text" placeholder={placeholder} />
+                      <input
+                        type="text"
+                        placeholder={placeholder}
+                      />
                     )}
                   </FormattedMessage>
 
-                  {this.state.showMenuSearchSpecialty && (
+                  {showMenuSearchSpecialty && (
                     <HomeMenuSearchSpecialty
-                      showMenuSearchSpecialty={this.state.showMenuSearchSpecialty}
+                      showMenuSearchSpecialty={showMenuSearchSpecialty}
                     />
                   )}
                 </div>
               </div>
-
             </div>
             <div className="right-content">
               <div className="support">
@@ -141,7 +159,7 @@ class HomeHeader extends Component {
               </div>
               <div
                 className={
-                  language === LANGUAGES.EN //bien language duoc khai bao ben tren
+                  language === LANGUAGES.EN
                     ? "language-en active"
                     : "language-en"
                 }
@@ -153,10 +171,8 @@ class HomeHeader extends Component {
             </div>
           </div>
         </div>
-        {this.props.isShowBanner === true && (
-         <Slide popularMovies={popularMovies} />
-        )}
-      </>
+        {isShowBanner && <Slide popularMovies={popularMovies} />}
+      </div>
     );
   }
 }

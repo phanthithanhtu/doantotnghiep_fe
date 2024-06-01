@@ -36,11 +36,14 @@ class Specialty extends Component {
   handleViewDetailSpecialty = (item) => {
     if (this.props.history) {
       this.props.history.push(`/detail-specialty/${item.id}`);
+      window.location.reload();
     }
   };
+  
 
   handleClickSeeMoreSpecialty = () => {
     this.props.history.push(`/list-specialty`);
+    window.location.reload();
   };
 
   render() {
@@ -85,9 +88,9 @@ class Specialty extends Component {
                           {item.name}
                         </Typography>
                       </CardContent>
-                      <div class="custom-view-icon">
-  <VisibilityIcon />
-</div>
+                      <div className="custom-view-icon">
+                        <VisibilityIcon />
+                      </div>
                     </Card>
                   </Grid>
                 ))}

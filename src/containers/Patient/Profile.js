@@ -23,6 +23,7 @@ const Profile = () => {
 
   const handleClickBtn = () => {
     history.push("/");
+    window.location.reload();
   };
   return (
     <>

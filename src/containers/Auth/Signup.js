@@ -63,6 +63,7 @@ class Signup extends Component {
           isShowPassword: false,
         });
         this.props.history.push("/login");
+        window.location.reload();
       }
     } catch (e) {
       console.log(e);

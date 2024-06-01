@@ -16,10 +16,8 @@ import AccountBoxIcon from "@material-ui/icons/AccountBox";
 import { useState, useEffect } from "react";
 import { useHistory } from "react-router-dom";
 
-import { connect } from "react-redux";
-import { LANGUAGES } from "../../utils";
 
-import { changeLanguageApp } from "../../store/actions/appActions";
+
 import { useDispatch, useSelector } from "react-redux";
 import * as actions from "../../store/actions";
 
@@ -71,7 +69,7 @@ const MenuHomeHeader = () => {
   //     language: "",
   //   });
 
-  let history = useHistory();
+  const history = useHistory();
   const [anchorEl, setAnchorEl] = React.useState(null);
 
   const handleClick = (event) => {
@@ -86,18 +84,22 @@ const MenuHomeHeader = () => {
     switch (item) {
       case "login":
         history.push("/login");
+        window.location.reload();
         break;
       case "forgot-password":
         history.push("/forgot-password");
+        window.location.reload();
         break;
       case "logout":
         dispatch(actions.processLogout()); //mapDispathToProps
         break;
       case "sign-up":
         history.push("/sign-up");
+        window.location.reload();
         break;
       case "home-page":
         history.push("/home");
+        window.location.reload();
         break;
       default:
       // code block

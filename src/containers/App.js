@@ -1,4 +1,4 @@
-import React, { Component, Fragment } from "react";
+import React, { Component } from "react";
 import { connect } from "react-redux";
 import { Route, Switch } from "react-router-dom";
 import { ConnectedRouter as Router } from "connected-react-router";
@@ -7,7 +7,6 @@ import { ToastContainer } from "react-toastify";
 import Doctor from "../routes/Doctor";
 import VerifyEmail from "./Patient/VerifyEmail";
 import { BrowserRouter } from 'react-router-dom';
-
 import {
   userIsAuthenticated,
   userIsNotAuthenticated,
@@ -45,6 +44,10 @@ import AdminDashboard from "./AdminDashboard/AdminDashboard";
 import indexAdminDashboard from "./AdminDashboard/indexAdminDashboard";
 
 import Profile from "./Patient/Profile";
+import { createBrowserHistory } from "history";
+
+const browserHistory = createBrowserHistory();
+
 class App extends Component {
   handlePersistorState = () => {
     const { persistor } = this.props;
@@ -66,14 +69,11 @@ class App extends Component {
 
   render() {
     return (
-      <Fragment>
-        <Router history={history}>  
+      <div>
+        <Router history={browserHistory}>  
           <div className="main-container">
-            {/* <ConfirmModal /> */}
-
             <div className="content-container">
               <CustomScrollbars style={{ height: "100vh", width: "100%" }}>
-              <BrowserRouter>
                 <Switch>
                   <Route path={path.HOME} exact component={Home} />
                   <Route
@@ -130,22 +130,8 @@ class App extends Component {
                     <NotFound />
                   </Route>
                 </Switch>
-                </BrowserRouter>
               </CustomScrollbars>
             </div>
-
-            {/* <ToastContainer
-              className="toast-container"
-              toastClassName="toast-item"
-              bodyClassName="toast-item-body"
-              autoClose={false}
-              hideProgressBar={true}
-              pauseOnHover={false}
-              pauseOnFocusLoss={true}
-              closeOnClick={false}
-              draggable={false}
-              closeButton={<CustomToastCloseButton />}
-            /> */}
 
             <ToastContainer
               position="bottom-right"
@@ -160,7 +146,7 @@ class App extends Component {
             />
           </div>
         </Router>
-      </Fragment>
+      </div>
     );
   }
 }

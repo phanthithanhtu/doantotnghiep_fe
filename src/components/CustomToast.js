@@ -1,4 +1,4 @@
-import React, { Component, Fragment } from 'react';
+import React, { Component } from 'react';
 import { FormattedMessage, FormattedTime } from 'react-intl';
 
 import CustomScrollBar from '../components/CustomScrollbars';
@@ -10,7 +10,7 @@ class CustomToast extends Component {
     render() {
         const { titleId, message, messageId, time } = this.props;
         return (
-            <Fragment>
+            <div>
                 <div className="custom-toast">
                     <div className="toast-title">
                         {time && (
@@ -27,9 +27,9 @@ class CustomToast extends Component {
                                 {
                                     message.map((msg, index) => {
                                         return (
-                                            <Fragment key={index}>
+                                            <div key={index}>
                                                 <div className="toast-content">{msg}</div>
-                                            </Fragment>
+                                            </div>
                                         )
                                     })
                                 }
@@ -39,7 +39,7 @@ class CustomToast extends Component {
                             </div>
                     }
                 </div>
-            </Fragment>
+            </div>
         );
     }
 }

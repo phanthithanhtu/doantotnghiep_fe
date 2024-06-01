@@ -1,15 +1,9 @@
-import { Navigate, useRoutes } from "react-router-domv6";
+import {  useRoutes } from "react-router-domv6";
 // layouts
 import DashboardLayout from "./layouts/dashboard";
-import LogoOnlyLayout from "./layouts/LogoOnlyLayout";
-//
-import Login from "./pages/Login";
-import Register from "./pages/Register";
+
 import DashboardApp from "./pages/DashboardApp";
-import Products from "./pages/Products";
-import Blog from "./pages/Blog";
-import User from "./pages/User";
-import NotFound from "./pages/Page404";
+
 import UserRedux from "../../containers/System/Admin/UserRedux";
 import ManageDoctor from "../../containers/System/Admin/ManageDoctor";
 import ManageSchedule from "../../containers/System/Doctor/ManageSchedule";

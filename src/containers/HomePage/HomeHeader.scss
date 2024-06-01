@@ -1,192 +1,141 @@
+/* Header Container */
 .home-header-container {
-  height: 60px;
-  width: 100%;
-  padding: 0 40px;
-  position: sticky;
+  position: fixed;
   top: 0;
-  background-color: white;
-  z-index: 1200 !important;
-
-  .home-header-content {
-    width: 100%;
-    height: 100%;
-    display: flex;
-
-    .left-content {
-      width: 20%;
-      display: flex;
-      align-items: center;
-      .header-logo {
-        background: url("../../assets/logo.svg") left center no-repeat;
-        height: 100%;
-        width: 100%;
-        cursor: pointer;
-        transform: scale(0.5, 0.5);
-        margin-left: -56px;
-      }
-      i {
-        font-size: 25px;
-        color: grey;
-        cursor: pointer;
-      }
-    }
-    .center-content {
-      width: 55%;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-
-      .child-content {
-        .subs-title {
-          font-weight: 400;
-          font-size: 12px;
-        }
-      }
-    }
-    .right-content {
-      width: 25%;
-      display: flex;
-      justify-content: flex-end;
-      align-items: center;
-
-      .support {
-        padding-right: 50px;
-        display: flex;
-        align-items: center;
-        cursor: pointer;
-
-        i {
-          font-size: 15px;
-          margin-right: 5px;
-        }
-      }
-      .language-vi {
-        opacity: 0.2;
-        cursor: pointer;
-        &.active {
-          opacity: 1;
-          span {
-            color: orange;
-          }
-        }
-        &:hover {
-          opacity: 1;
-        }
-      }
-      .language-en {
-        margin: 0 10px;
-        opacity: 0.2;
-        cursor: pointer;
-        &.active {
-          opacity: 1;
-          span {
-            color: blue;
-          }
-        }
-        &:hover {
-          opacity: 1;
-        }
-      }
-    }
-  }
+  left: 0;
+  width: 100%;
+  background-color: transparent;
+  transition: background-color 0.3s ease-in-out;
+  z-index: 1000;
 }
 
-.home-header-banner {
-  background-image: url("../../assets/Website+banner.png");
-  height: 485px;
-  background-repeat: no-repeat;
-  background-size: cover;
-  background-position: center;
+.home-header-container.black-bg {
+  background-color: rgba(0, 0, 0, 0.7); /* Màu nền đen với độ mờ */
+}
+
+/* Header Content */
+.home-header-content {
   display: flex;
-  flex-direction: column;
-  .content-up {
-    background-image: linear-gradient(
-      rgba(0, 0, 0, 0.25),
-      rgba(255, 255, 255, 0.1)
-    );
-    height: 65%;
-    padding-top: 15px;
-    .title1 {
-      text-align: center;
-      font-size: 30px;
-      text-shadow: 1px 1px 1px #333;
-      margin-bottom: 5px;
-      color: white;
-      margin-top: 30px;
-    }
-    .title2 {
-      text-align: center;
-      font-size: 30px;
-      text-shadow: 1px 1px 1px #333;
-      color: white;
-      margin-bottom: 15px;
-    }
-    .search {
-      position: relative !important;
-      width: fit-content;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      margin: 0 auto;
-      padding: 10px;
-      border-radius: 25px;
-      background: #f7d800;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 20px;
+}
 
-      i {
-        margin: 0 5px;
-      }
-      input {
-        height: 30px;
-        width: 360px;
-        background: transparent;
-        border: none;
-        outline: none;
-      }
-    }
+/* Logo */
+.header-logo {
+  width: 100px;
+  height: 50px;
+ 
+  cursor: pointer;
+}
+
+.header-logo:hover {
+  opacity: 0.8;
+}
+
+/* Menu */
+.menu-home-header {
+  margin-right: 20px;
+}
+
+/* Navigation Links */
+.left-content,
+.center-content,
+.right-content {
+  display: flex;
+  align-items: center;
+}
+
+.child-content {
+  margin-right: 20px;
+}
+
+.subs-title {
+  font-size: 14px;
+  color: #f1eaea;
+}
+
+/* Support */
+.support {
+  margin-right: 20px;
+  color: #555;
+  cursor: pointer;
+}
+
+.support:hover {
+  opacity: 0.8;
+}
+
+/* Language Selector */
+.language-vi,
+.language-en {
+  margin-right: 10px;
+  cursor: pointer;
+}
+
+.language-vi.active,
+.language-en.active {
+  font-weight: bold;
+}
+
+/* Search */
+.search {
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+}
+
+.search input {
+  padding: 8px 12px;
+  border: none;
+  border-radius: 20px;
+  outline: none;
+  background-color: #f1f1f1; /* Màu nền của ô tìm kiếm */
+}
+
+.search input:focus {
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.3); /* Hiệu ứng bóng khi ô tìm kiếm được focus */
+}
+
+.search i {
+  margin-right: 5px;
+}
+
+/* Language Selector Text */
+.language-vi span,
+.language-en span {
+  font-weight: bold;
+}
+
+.language-vi.active span,
+.language-en.active span {
+  color: #007bff;
+}
+
+.language-vi span:hover,
+.language-en span:hover {
+  color: #007bff;
+}
+
+.language-vi.active span:hover,
+.language-en.active span:hover {
+  color: #0056b3;
+}
+
+/* Menu Toggle Icon */
+.menu-toggle {
+  display: none;
+  cursor: pointer;
+}
+
+@media (max-width: 768px) {
+  .left-content,
+  .center-content,
+  .right-content {
+    display: none;
   }
-  .content-down {
-    height: 35%;
-    display: flex;
-    align-items: flex-end;
-    justify-content: center;
-    background-image: linear-gradient(
-      rgba(255, 255, 255, 0.1),
-      rgba(255, 255, 255, 0.9),
-      rgba(255, 255, 255, 1)
-    );
-    padding-bottom: 10px;
-    .options {
-      text-align: center;
-      display: flex;
-      gap: 50px;
-      justify-content: center;
-      .option-child {
-        width: 100px;
-        .icon-child {
-          background: white;
-          width: 40px;
-          height: 40px;
-          padding: 10px;
-          border-radius: 50%;
-          text-align: center;
-          margin: 0 auto;
-
-          i {
-            color: #49bce2;
-            font-size: 20px;
-          }
-        }
-
-        .text-child {
-          font-size: 17px;
-          font-weight: 500;
-          cursor: pointer;
-
-          &:hover {
-            color: #49bce2;
-          }
-        }
-      }
-    }
+  
+  .menu-toggle {
+    display: block;
   }
 }

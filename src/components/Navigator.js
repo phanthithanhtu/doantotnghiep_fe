@@ -1,4 +1,4 @@
-import React, { Component, Fragment } from 'react';
+import React, { Component } from 'react';
 import { Link, withRouter } from 'react-router-dom';
 import { FormattedMessage } from 'react-intl';
 import { connect } from 'react-redux';
@@ -6,7 +6,6 @@ import { connect } from 'react-redux';
 import './Navigator.scss';
 
 class MenuGroup extends Component {
-
     render() {
         const { name, children } = this.props;
         return (
@@ -23,13 +22,12 @@ class MenuGroup extends Component {
 }
 
 class Menu extends Component {
-
     render() {
         const { name, active, link, children, onClick, hasSubMenu, onLinkClick } = this.props;
         return (
-            <li className={"menu" + (hasSubMenu ? " has-sub-menu" : "") + ("") + (active ? " active" : "")}>
+            <li className={"menu" + (hasSubMenu ? " has-sub-menu" : "") + (active ? " active" : "")}>
                 {hasSubMenu ? (
-                    <Fragment>
+                    <>
                         <span
                             data-toggle="collapse"
                             className={"menu-link collapsed"}
@@ -46,19 +44,18 @@ class Menu extends Component {
                                 {children}
                             </ul>
                         </div>
-                    </Fragment>
+                    </>
                 ) : (
-                        <Link to={link} className="menu-link" onClick={onLinkClick}>
-                            <FormattedMessage id={name} />
-                        </Link>
-                    )}
+                    <Link to={link} className="menu-link" onClick={onLinkClick}>
+                        <FormattedMessage id={name} />
+                    </Link>
+                )}
             </li>
         );
     }
 }
 
 class SubMenu extends Component {
-
     getItemClass = path => {
         return this.props.location.pathname === path ? "active" : "";
     };
@@ -80,7 +77,6 @@ const MenuWithRouter = withRouter(Menu);
 const SubMenuWithRouter = withRouter(SubMenu);
 
 const withRouterInnerRef = (WrappedComponent) => {
-
     class InnerComponentWithRef extends React.Component {
         render() {
             const { forwardRef, ...rest } = this.props;
@@ -162,85 +158,62 @@ class Navigator extends Component {
         this.checkActiveMenu();
     };
 
-    // componentWillReceiveProps(nextProps, prevState) {
-    //     const { location, setAccountMenuPath, setSettingMenuPath } = this.props;
-    //     const { location: nextLocation } = nextProps;
-    //     if (location !== nextLocation) {
-    //         let pathname = nextLocation && nextLocation.pathname;
-    //         if ((pathname.startsWith('/account/') || pathname.startsWith('/fds/account/'))) {
-    //             setAccountMenuPath(pathname);
-    //         }
-    //         if (pathname.startsWith('/settings/')) {
-    //             setSettingMenuPath(pathname);
-    //         };
-    //     };
-    // };
-
-    componentDidUpdate(prevProps, prevState) {
+    componentDidUpdate(prevProps) {
         const { location } = this.props;
         const { location: prevLocation } = prevProps;
         if (location !== prevLocation) {
             this.checkActiveMenu();
-        };
+        }
     };
 
     render() {
         const { menus, location, onLinkClick } = this.props;
         return (
-            <Fragment>
+            <>
                 <ul className="navigator-menu list-unstyled">
-                    {
-                        menus.map((group, groupIndex) => {
-                            return (
-                                <Fragment key={groupIndex}>
-                                    <MenuGroupWithRouter name={group.name}>
-                                        {group.menus ? (
-                                            group.menus.map((menu, menuIndex) => {
-                                                const isMenuHasSubMenuActive = this.isMenuHasSubMenuActive(location, menu.subMenus, menu.link);
-                                                const isSubMenuOpen = this.state.expandedMenu[groupIndex + '_' + menuIndex] === true;
-                                                return (
-                                                    <MenuWithRouter
-                                                        key={menuIndex}
-                                                        active={isMenuHasSubMenuActive}
-                                                        name={menu.name}
-                                                        link={menu.link}
-                                                        hasSubMenu={menu.subMenus}
-                                                        isOpen={isSubMenuOpen}
-                                                        onClick={() => this.toggle(groupIndex, menuIndex)}
-                                                        onLinkClick={onLinkClick}
-                                                    >
-                                                        {menu.subMenus && menu.subMenus.map((subMenu, subMenuIndex) => (
-                                                            <SubMenuWithRouter
-                                                                key={subMenuIndex}
-                                                                name={subMenu.name}
-                                                                link={subMenu.link}
-                                                                onClick={this.closeOtherExpand}
-                                                                onLinkClick={onLinkClick}
-                                                            />
-                                                        ))}
-                                                    </MenuWithRouter>
-                                                );
-                                            })
-                                        ) : null}
-                                    </MenuGroupWithRouter>
-                                </Fragment>
-                            );
-                        })
-                    }
+                    {menus.map((group, groupIndex) => (
+                        <MenuGroupWithRouter key={groupIndex} name={group.name}>
+                            {group.menus &&
+                                group.menus.map((menu, menuIndex) => {
+                                    const isMenuHasSubMenuActive = this.isMenuHasSubMenuActive(location, menu.subMenus, menu.link);
+                                    const isSubMenuOpen = this.state.expandedMenu[groupIndex + '_' + menuIndex] === true;
+                                    return (
+                                        <MenuWithRouter
+                                            key={menuIndex}
+                                            active={isMenuHasSubMenuActive}
+                                            name={menu.name}
+                                            link={menu.link}
+                                            hasSubMenu={menu.subMenus}
+                                            isOpen={isSubMenuOpen}
+                                            onClick={() => this.toggle(groupIndex, menuIndex)}
+                                            onLinkClick={onLinkClick}
+                                        >
+                                            {menu.subMenus && menu.subMenus.map((subMenu, subMenuIndex) => (
+                                                <SubMenuWithRouter
+                                                    key={subMenuIndex}
+                                                    name={subMenu.name}
+                                                    link={subMenu.link}
+                                                    onClick={this.closeOtherExpand}
+                                                    onLinkClick={onLinkClick}
+                                                />
+                                            ))}
+                                        </MenuWithRouter>
+                                    );
+                                })}
+                        </MenuGroupWithRouter>
+                    ))}
                 </ul>
-            </Fragment>
+            </>
         );
     }
 }
 
 const mapStateToProps = state => {
-    return {
-    };
+    return {};
 };
 
 const mapDispatchToProps = dispatch => {
-    return {
-    }
-}
+    return {};
+};
 
 export default withRouterInnerRef(connect(mapStateToProps, mapDispatchToProps)(Navigator));

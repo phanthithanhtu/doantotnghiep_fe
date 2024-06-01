@@ -25,10 +25,11 @@ const useStyles = makeStyles((theme) => ({
   },
   menuTitle: {
     flex: 1,
-    fontSize: 20,
+    fontSize: 50,
     textOverflow: "ellipsis",
     whiteSpace: "nowrap",
     overflow: "hidden",
+   
   },
   menuButton: {
     marginRight: theme.spacing(2),
@@ -44,6 +45,7 @@ const useStyles = makeStyles((theme) => ({
     backgroundPosition: "center",
     backgroundRepeat: "no-repeat",
     backgroundSize: "cover",
+  
   },
   listSpecialtyName: {
     marginLeft: 10,
@@ -73,14 +75,16 @@ const ListSpecialty = () => {
 
   const handleViewDetailSpecialty = (item) => {
     history.push(`/detail-specialty/${item.id}`);
+    window.location.reload();
   };
 
   const handleOnClickBackHome = () => {
     history.push(`/home`);
+    window.location.reload();
   };
 
   return (
-    <>
+    <div>
       <div className={classes.root}>
         <AppBar position="static" className={classes.appBar}>
           <Toolbar variant="dense">
@@ -121,7 +125,7 @@ const ListSpecialty = () => {
           ))}
         </MenuList>
       </Paper>
-    </>
+    </div>
   );
 };
 
