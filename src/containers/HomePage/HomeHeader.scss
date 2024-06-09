@@ -1,17 +1,18 @@
 /* Header Container */
+.center-content{
+  color: #fff;
+  height: 40px;
+}
 .home-header-container {
-  position: fixed;
+  position:p;
   top: 0;
   left: 0;
   width: 100%;
-  background-color: transparent;
+ 
   transition: background-color 0.3s ease-in-out;
   z-index: 1000;
 }
 
-.home-header-container.black-bg {
-  background-color: rgba(0, 0, 0, 0.7); /* Màu nền đen với độ mờ */
-}
 
 /* Header Content */
 .home-header-content {

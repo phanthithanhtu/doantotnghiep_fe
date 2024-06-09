@@ -1,5 +1,4 @@
 .home-header-container {
-  position: fixed;
   top: 0;
   left: 0;
   width: 100%;
@@ -13,6 +12,7 @@
 }
 
 .home-header-content {
+  background-color: #343a40;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -94,7 +94,7 @@
   border: 1px solid #f1eeee;
   border-radius: 5px;
   outline: none;
-  background-color: rgba(0, 0, 0, 0.2); /* Nền trong suốt */
+  background-color:#343a40; /* Nền trong suốt */
   color: #fff; /* Màu chữ trắng */
 }
 
