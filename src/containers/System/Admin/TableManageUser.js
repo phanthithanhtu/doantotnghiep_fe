@@ -93,10 +93,8 @@ class TableManageUser extends Component {
           <Scrollbar>
             <TableContainer sx={{ minWidth: 800 }}>
               <Table>
-                <UserListHead
-                 
+                <UserListHead     
                   headLabel={TABLE_HEAD}
-               
                 />
                 <TableBody>
                   {arrUsers.map((row) => {
@@ -136,9 +134,7 @@ class TableManageUser extends Component {
                         key={id}
                         tabIndex={-1}
                         role="checkbox"
-                     
                       >
-                       
                         <TableCell component="th" scope="row" padding="none">
                           <Stack
                             direction="row"
@@ -183,9 +179,6 @@ class TableManageUser extends Component {
                             ? "Giáo sư"
                             : "None"}
                         </TableCell>
-
-                   
-
                         <TableCell align="right">
                           <button
                             className="btn-edit"
@@ -203,17 +196,11 @@ class TableManageUser extends Component {
                       </TableRow>
                     );
                   })}
-                
                 </TableBody>
-        
-               
               </Table>
             </TableContainer>
           </Scrollbar>
-
-        
         </Card>
-      
       </React.Fragment>
     );
   }
