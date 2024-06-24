@@ -1,46 +1,38 @@
-import React from "react";
-import MenuList from "@material-ui/core/MenuList";
-import MenuItem from "@material-ui/core/MenuItem";
-import Paper from "@material-ui/core/Paper";
-import { makeStyles } from "@material-ui/core/styles";
-import ListItemIcon from "@material-ui/core/ListItemIcon";
-import Typography from "@material-ui/core/Typography";
-
-import { useState, useEffect } from "react";
-import { useHistory } from "react-router-dom";
-import { useDispatch, useSelector } from "react-redux";
-
-// import { connect } from "react-redux";
-// import { LANGUAGES } from "../../utils";
-
-// import { changeLanguageApp } from "../../store/actions/appActions";
-// import { useDispatch, useSelector } from "react-redux";
-import * as actions from "../../../store/actions";
-import { LANGUAGES } from "../../../utils";
-
+import React, { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
+import { useSelector, useDispatch } from "react-redux";
 import AppBar from "@material-ui/core/AppBar";
 import Toolbar from "@material-ui/core/Toolbar";
-
 import IconButton from "@material-ui/core/IconButton";
 import KeyboardBackspaceIcon from "@material-ui/icons/KeyboardBackspace";
+import Paper from "@material-ui/core/Paper";
+import MenuList from "@material-ui/core/MenuList";
+import MenuItem from "@material-ui/core/MenuItem";
+import ListItemIcon from "@material-ui/core/ListItemIcon";
+import Typography from "@material-ui/core/Typography";
 import Divider from "@material-ui/core/Divider";
+import { makeStyles } from "@material-ui/core/styles";
+import { fetchAllDoctors } from "../../../store/actions";
+import { LANGUAGES } from "../../../utils";
 
 const useStyles = makeStyles((theme) => ({
   root: {
     position: "sticky",
-    top: "0px",
-    zIndex: "100",
+    top: 0,
+    zIndex: 100,
   },
   root2: {
-    width: "100wh",
+    width: "100vw",
     height: "100vh",
   },
   menu: {
-    backgroundColor: "#ffffff !important",
+    backgroundColor: "#ffffff",
+    color: "#3c3c3c",
+    boxShadow: "none",
   },
   menuTitle: {
-    color: "#3c3c3c",
-    fontSize: "20px",
+    flex: 1,
+    fontSize: 20,
     textOverflow: "ellipsis",
     whiteSpace: "nowrap",
     overflow: "hidden",
@@ -48,20 +40,16 @@ const useStyles = makeStyles((theme) => ({
   menuButton: {
     marginRight: theme.spacing(2),
   },
-  // menuIcon: {
-  //   fontSize: "25px",
-  //   color: "black",
-  // },
   bgImageListSpecialty: {
-    width: "100px",
-    height: "67px",
+    width: 100,
+    height: 67,
     backgroundPosition: "center center",
     backgroundRepeat: "no-repeat",
     backgroundSize: "cover",
   },
   listSpecialtyName: {
-    marginLeft: "10px",
-    fontSize: "14px",
+    marginLeft: 10,
+    fontSize: 14,
     color: "#333",
   },
   content: {
@@ -76,27 +64,25 @@ const ListOutStandingDoctor = () => {
 
   const allDoctors = useSelector((state) => state.admin.allDoctors);
   const language = useSelector((state) => state.app.language);
-
   const dispatch = useDispatch();
+  const history = useNavigate();
 
   useEffect(() => {
-    dispatch(actions.fetchAllDoctors());
-  }, []);
+    dispatch(fetchAllDoctors());
+  }, [dispatch]);
+
   useEffect(() => {
     setArrDoctors(allDoctors);
   }, [allDoctors]);
 
-  let history = useHistory();
-
   const handleViewDetailDoctor = (doctor) => {
     history.push(`/detail-doctor/${doctor.id}`);
-    window.location.reload();
+  };
 
+  const handleOnClickBackHome = () => {
+    history.goBack();
   };
-  const handleOnClickBackHome = () => (event) => {
-    // history.goBack
-    // history.push(`/home`);
-  };
+
   return (
     <>
       <div className={classes.root}>
@@ -105,12 +91,12 @@ const ListOutStandingDoctor = () => {
             <IconButton
               edge="start"
               className={classes.menuButton}
-              onClick={history.goBack}
+              onClick={handleOnClickBackHome}
               aria-label="menu"
             >
-              <KeyboardBackspaceIcon className={classes.menuIcon} />
+              <KeyboardBackspaceIcon />
             </IconButton>
-            <Typography variant="h5" className={classes.menuTitle}>
+            <Typography variant="h6" className={classes.menuTitle}>
               Bác sĩ
             </Typography>
           </Toolbar>
@@ -118,51 +104,34 @@ const ListOutStandingDoctor = () => {
       </div>
       <Paper className={classes.root2}>
         <MenuList id="long-menu">
-          {arrDoctors &&
-            arrDoctors.length > 0 &&
-            arrDoctors.map((item, index) => {
-              let imageBase64 = "";
-              if (item.image) {
-                imageBase64 = new Buffer(item.image, "base64").toString(
-                  "binary"
-                );
-              }
-              let nameVi = `${item.positionData.valueVi}, ${item.lastName} ${item.firstName}`;
-              let nameEn = `${item.positionData.valueEn}, ${item.firstName} ${item.lastName}`;
-              return (
-                <div key={index} onClick={() => handleViewDetailDoctor(item)}>
-                  <MenuItem>
-                    <ListItemIcon>
-                      <div
-                        className={classes.bgImageListSpecialty}
-                        style={{
-                          backgroundImage: `url(${imageBase64})`,
-                        }}
-                      ></div>
-                    </ListItemIcon>
-                    <div className={classes.content}>
-                      <Typography
-                        variant="inherit"
-                        className={classes.listSpecialtyName}
-                      >
-                        {language === LANGUAGES.VI ? nameVi : nameEn}
-                      </Typography>
-                      <Typography
-                        variant="inherit"
-                        className={classes.listSpecialtyName}
-                      >
-                        {item.Doctor_Infor &&
-                        item.Doctor_Infor.specialtyData &&
-                        item.Doctor_Infor.specialtyData.name
-                          ? item.Doctor_Infor.specialtyData.name
-                          : ""}
-                      </Typography>
-                    </div>
-                  </MenuItem>
-                  <Divider />
-                </div>
-              );
-            })}
+          {arrDoctors.map((item, index) => {
+            let imageBase64 = item.image ? Buffer.from(item.image, "base64").toString("binary") : "";
+            let nameVi = `${item.positionData.valueVi}, ${item.lastName} ${item.firstName}`;
+            let nameEn = `${item.positionData.valueEn}, ${item.firstName} ${item.lastName}`;
+            let specialtyName = item.Doctor_Infor?.specialtyData?.name || "";
+
+            return (
+              <div key={index} onClick={() => handleViewDetailDoctor(item)}>
+                <MenuItem>
+                  <ListItemIcon>
+                    <div
+                      className={classes.bgImageListSpecialty}
+                      style={{ backgroundImage: `url(${imageBase64})` }}
+                    ></div>
+                  </ListItemIcon>
+                  <div className={classes.content}>
+                    <Typography variant="inherit" className={classes.listSpecialtyName}>
+                      {language === LANGUAGES.VI ? nameVi : nameEn}
+                    </Typography>
+                    <Typography variant="inherit" className={classes.listSpecialtyName}>
+                      {specialtyName}
+                    </Typography>
+                  </div>
+                </MenuItem>
+                <Divider />
+              </div>
+            );
+          })}
         </MenuList>
       </Paper>
     </>

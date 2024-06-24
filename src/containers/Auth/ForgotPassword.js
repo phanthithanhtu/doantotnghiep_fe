@@ -1,12 +1,12 @@
 import React, { useState, useEffect } from "react";
-import { useHistory } from "react-router-dom";
+import { useNavigate  } from "react-router-dom";
 import "./ForgotPassword.scss";
 
 import { postUserForgotPassword } from "../../services/userService";
 import { toast } from "react-toastify";
 
 const ForgotPassword = () => {
-  let history = useHistory();
+  let history = useNavigate ();
 
   const [email, setEmail] = useState("");
 

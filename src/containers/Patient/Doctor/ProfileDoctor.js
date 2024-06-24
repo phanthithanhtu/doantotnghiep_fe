@@ -4,10 +4,9 @@ import { FormattedMessage } from "react-intl";
 import "./ProfileDoctor.scss";
 import { getProfileDoctorById } from "../../../services/userService";
 import { LANGUAGES } from "../../../utils";
-import NumberFormat from "react-number-format";
+import { NumberFormat } from 'react-number-format';
 import _ from "lodash";
 import moment from "moment";
-import localization from "moment/locale/vi"; //su dung chung cho cai mac dinh la tieng viet
 import { Link } from "react-router-dom";
 
 class ProfileDoctor extends Component {

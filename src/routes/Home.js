@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Redirect } from "react-router-dom";
+import { Navigate  } from "react-router-dom";
 import { connect } from "react-redux";
 import { LANGUAGES, USER_ROLE } from "../utils";
 
@@ -11,7 +11,7 @@ class Home extends Component {
         ? "/admin-dashboard"
         : "/home";
 
-    return <Redirect to={linkToRedirect} />;
+    return <Navigate  to={linkToRedirect} />;
   }
 }
 

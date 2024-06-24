@@ -1,5 +1,5 @@
 import { motion } from "framer-motion/dist/framer-motion";
-import { Link as RouterLink } from "react-router-domv6";
+import { Link as RouterLink } from "react-router-dom";
 // material
 import { styled } from "@mui/material/styles";
 import { Box, Button, Typography, Container } from "@mui/material";

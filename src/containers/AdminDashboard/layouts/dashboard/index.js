@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Outlet } from "react-router-domv6";
+import { Outlet } from "react-router-dom";
 // material
 import { styled } from "@mui/material/styles";
 //

@@ -3,8 +3,8 @@ import { connect } from "react-redux";
 import "./Specialty.scss";
 import { FormattedMessage } from "react-intl";
 import { getAllSpecialty } from "../../../services/userService";
-import { withRouter } from "react-router";
-import VisibilityIcon from '@mui/icons-material/Visibility';
+import { withRouter } from "react-router-dom"; // Changed to react-router-dom
+import VisibilityIcon from "@mui/icons-material/Visibility";
 import {
   Box,
   Button,
@@ -28,26 +28,27 @@ class Specialty extends Component {
     let res = await getAllSpecialty();
     if (res && res.errCode === 0) {
       this.setState({
-        dataSpecialty: res.data ? res.data.slice(0, 12) : [], // Limiting to 10 items
+        dataSpecialty: res.data ? res.data.slice(0, 12) : [], // Limiting to 12 items
       });
     }
   }
 
   handleViewDetailSpecialty = (item) => {
-    if (this.props.history) {
-      this.props.history.push(`/detail-specialty/${item.id}`);
-      window.location.reload();
+    const { history } = this.props;
+    if (history) {
+      history.push(`/detail-specialty/${item.id}`);
     }
   };
-  
 
   handleClickSeeMoreSpecialty = () => {
-    this.props.history.push(`/list-specialty`);
-    window.location.reload();
+    const { history } = this.props;
+    if (history) {
+      history.push(`/list-specialty`);
+    }
   };
 
   render() {
-    let { dataSpecialty } = this.state;
+    const { dataSpecialty } = this.state;
 
     return (
       <Box className="custom-section-share custom-section-specialty">

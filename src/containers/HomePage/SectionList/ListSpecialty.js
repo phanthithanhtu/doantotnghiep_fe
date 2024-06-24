@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { useHistory } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import AppBar from "@material-ui/core/AppBar";
 import Toolbar from "@material-ui/core/Toolbar";
 import IconButton from "@material-ui/core/IconButton";
@@ -12,6 +12,7 @@ import ListItemIcon from "@material-ui/core/ListItemIcon";
 import Divider from "@material-ui/core/Divider";
 import { makeStyles } from "@material-ui/core/styles";
 import { getAllSpecialty } from "../../../services/userService";
+
 const useStyles = makeStyles((theme) => ({
   root: {
     position: "sticky",
@@ -25,11 +26,10 @@ const useStyles = makeStyles((theme) => ({
   },
   menuTitle: {
     flex: 1,
-    fontSize: 50,
+    fontSize: 20, // Adjusted font size for better readability
     textOverflow: "ellipsis",
     whiteSpace: "nowrap",
     overflow: "hidden",
-   
   },
   menuButton: {
     marginRight: theme.spacing(2),
@@ -45,7 +45,6 @@ const useStyles = makeStyles((theme) => ({
     backgroundPosition: "center",
     backgroundRepeat: "no-repeat",
     backgroundSize: "cover",
-  
   },
   listSpecialtyName: {
     marginLeft: 10,
@@ -55,19 +54,26 @@ const useStyles = makeStyles((theme) => ({
   paper: {
     width: "100%",
     height: "100%",
+    marginTop: theme.spacing(2), // Added margin top for spacing
   },
 }));
 
 const ListSpecialty = () => {
   const classes = useStyles();
   const [dataSpecialty, setDataSpecialty] = useState([]);
-  const history = useHistory();
+  const history = useNavigate();
 
   useEffect(() => {
     const fetchAllSpecialty = async () => {
-      let res = await getAllSpecialty();
-      if (res && res.errCode === 0) {
-        setDataSpecialty(res.data || []);
+      try {
+        const res = await getAllSpecialty();
+        if (res && res.errCode === 0) {
+          setDataSpecialty(res.data || []);
+        } else {
+          console.error("Error fetching specialties:", res.errMessage);
+        }
+      } catch (error) {
+        console.error("Error fetching specialties:", error);
       }
     };
     fetchAllSpecialty();
@@ -75,12 +81,10 @@ const ListSpecialty = () => {
 
   const handleViewDetailSpecialty = (item) => {
     history.push(`/detail-specialty/${item.id}`);
-    window.location.reload();
   };
 
   const handleOnClickBackHome = () => {
     history.push(`/home`);
-    window.location.reload();
   };
 
   return (
@@ -96,7 +100,7 @@ const ListSpecialty = () => {
             >
               <KeyboardBackspaceIcon />
             </IconButton>
-            <Typography variant="h5" className={classes.menuTitle}>
+            <Typography variant="h6" className={classes.menuTitle}>
               Chuyên khoa
             </Typography>
           </Toolbar>

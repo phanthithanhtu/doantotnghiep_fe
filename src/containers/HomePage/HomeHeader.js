@@ -1,180 +1,110 @@
-import React, { Component } from "react";
+import React, { useState } from "react";
 import { connect } from "react-redux";
-import "./HomeHeader.scss";
 import { FormattedMessage } from "react-intl";
 import { LANGUAGES } from "../../utils";
-
 import { changeLanguageApp } from "../../store/actions/appActions";
-import { withRouter } from "react-router";
-
 import MenuHomeHeader from "./MenuHomeHeader";
 import HomeMenuSearchSpecialty from "./HomeMenuSearchSpecialty";
-import { emitter } from "../../utils/emitter";
-import { Alert } from "reactstrap";
-import Search from "./Search";
 import Slide from "./slide";
-class HomeHeader extends Component {
-  constructor() {
-    super();
+import { useNavigate } from "react-router-dom";
+import { Alert } from "reactstrap";
 
-    this.state = {
-      showMenuSearchSpecialty: false,
-    };
-  }
-  handleClickShowHomeMenuSearchSpecialty = () => {
-    this.setState({
-      showMenuSearchSpecialty: !this.state.showMenuSearchSpecialty,
-    });
+import "./HomeHeader.scss";
+
+const HomeHeader = ({ language, changeLanguageAppRedux, isShowBanner, popularMovies }) => {
+  const [showMenuSearchSpecialty, setShowMenuSearchSpecialty] = useState(false);
+  const navigate = useNavigate();
+
+  const handleClickShowHomeMenuSearchSpecialty = () => {
+    setShowMenuSearchSpecialty(!showMenuSearchSpecialty);
   };
 
-  changeLanguage = (language) => {
-    this.props.changeLanguageAppRedux(language);
-    //fire redux event: action
+  const changeLanguage = (language) => {
+    changeLanguageAppRedux(language);
   };
-  // returnToHome = () => {
-  //   if (this.props.history) {
-  //     this.props.history.push(`/home`);
-  //   }
-  // };
- 
-  render() {
-    let language = this.props.language;
-    const popularMovies = [
-      {
-        backgroundURL:
-          "https://t3.ftcdn.net/jpg/01/43/71/22/240_F_143712208_CWBM4PQpcIuxC3XnlSWn52ILR0YXUrWW.jpg",
-        title: "ảnh1",
-      },
-      {
-        backgroundURL:
-          "https://t4.ftcdn.net/jpg/06/52/05/07/240_F_652050743_AzwU88c7oKphrC4gj1Rm1KN5Iq3apPAm.jpg",
-        title: "ảnh2",
-      },
-      {
-        backgroundURL:
-          "https://t3.ftcdn.net/jpg/03/01/96/40/240_F_301964016_dqEfQrVE4rlqaI6aSNxBFUCASzJBu6nN.jpg",
-        title: "ảnh3",
-      },
-    ];
 
-    return (
-      <>
-        <div className="home-header-container">
-          <div className="home-header-content">
-
+  return (
+    <>
+      <div className="home-header-container">
+        <div className="home-header-content">
           <div className="left-content">
- <div className="menu-home-header">
-                  <MenuHomeHeader />
-                </div>
-              <a href="/home" className="logo-link">
-               
-                <div className="header-logo"></div>
-              </a>
+            <div className="menu-home-header">
+              <MenuHomeHeader />
             </div>
-            <div className="center-content">
-              <div className="child-content">
-                <div>
-                  <b>
-                    <FormattedMessage id="homeheader.speciality" />
-                  </b>
-                </div>
-                <div className="subs-title">
-                  <FormattedMessage id="homeheader.searchdoctor" />
-                </div>
+            <a href="/home" className="logo-link">
+              <div className="header-logo"></div>
+            </a>
+          </div>
+          <div className="center-content">
+            <div className="child-content">
+              <div>
+                <b>
+                  <FormattedMessage id="homeheader.speciality" />
+                </b>
               </div>
-              <div className="child-content">
-                <div>
-                  <b>
-                    <FormattedMessage id="homeheader.health-facility" />
-                  </b>
-                </div>
-                <div className="subs-title">
-                  <FormattedMessage id="homeheader.select-room" />
-                </div>
+              <div className="subs-title">
+                <FormattedMessage id="homeheader.searchdoctor" />
               </div>
-              <div className="child-content">
-                <div>
-                  <b>
-                    <FormattedMessage id="homeheader.doctor" />
-                  </b>
-                </div>
-                <div className="subs-title">
-                  <FormattedMessage id="homeheader.select-doctor" />
-                </div>
-              </div>
-              <div className="child-content">
-                <div
-                  className="search"
-                  onClick={() => this.handleClickShowHomeMenuSearchSpecialty()}
-                >
-                  <i className="fas fa-search"></i>
-                  <FormattedMessage id="banner.search">
-                    {(placeholder) => (
-                      <input type="text" placeholder={placeholder} />
-                    )}
-                  </FormattedMessage>
-
-                  {this.state.showMenuSearchSpecialty && (
-                    <HomeMenuSearchSpecialty
-                      showMenuSearchSpecialty={this.state.showMenuSearchSpecialty}
-                    />
-                  )}
-                </div>
-              </div>
-
             </div>
-            <div className="right-content">
-              <div className="support">
-                <i className="fas fa-question-circle"></i>
-                <FormattedMessage id="homeheader.support" />
+            <div className="child-content">
+              <div>
+                <b>
+                  <FormattedMessage id="homeheader.health-facility" />
+                </b>
               </div>
-              <div
-                className={
-                  language === LANGUAGES.VI
-                    ? "language-vi active"
-                    : "language-vi"
-                }
-              >
-                <span onClick={() => this.changeLanguage(LANGUAGES.VI)}>
-                  VN
-                </span>
+              <div className="subs-title">
+                <FormattedMessage id="homeheader.select-room" />
               </div>
-              <div
-                className={
-                  language === LANGUAGES.EN //bien language duoc khai bao ben tren
-                    ? "language-en active"
-                    : "language-en"
-                }
-              >
-                <span onClick={() => this.changeLanguage(LANGUAGES.EN)}>
-                  EN
-                </span>
+            </div>
+            <div className="child-content">
+              <div>
+                <b>
+                  <FormattedMessage id="homeheader.doctor" />
+                </b>
+              </div>
+              <div className="subs-title">
+                <FormattedMessage id="homeheader.select-doctor" />
+              </div>
+            </div>
+            <div className="child-content">
+              <div className="search" onClick={handleClickShowHomeMenuSearchSpecialty}>
+                <i className="fas fa-search"></i>
+                <FormattedMessage id="banner.search">
+                  {(placeholder) => <input type="text" placeholder={placeholder} />}
+                </FormattedMessage>
+                {showMenuSearchSpecialty && (
+                  <HomeMenuSearchSpecialty showMenuSearchSpecialty={showMenuSearchSpecialty} />
+                )}
               </div>
             </div>
           </div>
+          <div className="right-content">
+            <div className="support">
+              <i className="fas fa-question-circle"></i>
+              <FormattedMessage id="homeheader.support" />
+            </div>
+            <div className={language === LANGUAGES.VI ? "language-vi active" : "language-vi"}>
+              <span onClick={() => changeLanguage(LANGUAGES.VI)}>VN</span>
+            </div>
+            <div className={language === LANGUAGES.EN ? "language-en active" : "language-en"}>
+              <span onClick={() => changeLanguage(LANGUAGES.EN)}>EN</span>
+            </div>
+          </div>
         </div>
-        {this.props.isShowBanner === true && (
-         <Slide popularMovies={popularMovies} />
-        )}
-      </>
-    );
-  }
-}
-
-const mapStateToProps = (state) => {
-  return {
-    isLoggedIn: state.user.isLoggedIn,
-    userInfo: state.user.userInfo,
-    language: state.app.language,
-  };
+      </div>
+      {isShowBanner && <Slide popularMovies={popularMovies} />}
+    </>
+  );
 };
 
-const mapDispatchToProps = (dispatch) => {
-  return {
-    changeLanguageAppRedux: (language) => dispatch(changeLanguageApp(language)),
-  };
-};
+const mapStateToProps = (state) => ({
+  isLoggedIn: state.user.isLoggedIn,
+  userInfo: state.user.userInfo,
+  language: state.app.language,
+});
 
-export default withRouter(
-  connect(mapStateToProps, mapDispatchToProps)(HomeHeader)
-);
+const mapDispatchToProps = (dispatch) => ({
+  changeLanguageAppRedux: (language) => dispatch(changeLanguageApp(language)),
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(HomeHeader);

@@ -1,5 +1,5 @@
 import { useEffect } from "react";
-import { useLocation } from "react-router-domv6";
+import { useLocation } from "react-router-dom";
 
 // ----------------------------------------------------------------------
 

@@ -2,7 +2,7 @@ import { faker } from "@faker-js/faker";
 import PropTypes from "prop-types";
 import { noCase } from "change-case";
 import { useRef, useState } from "react";
-import { Link as RouterLink } from "react-router-domv6";
+import { Link as RouterLink } from "react-router-dom";
 import { set, sub, formatDistanceToNow } from "date-fns";
 // material
 import { alpha } from "@mui/material/styles";

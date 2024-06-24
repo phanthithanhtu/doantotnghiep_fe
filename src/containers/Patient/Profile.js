@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { useHistory } from "react-router-dom";
+import { useNavigate} from "react-router-dom";
 
 import {
   Button,
@@ -15,7 +15,7 @@ import {
 } from "reactstrap";
 
 const Profile = () => {
-  let history = useHistory();
+  let history = useNavigate();
 
   useEffect(() => {
     document.title = "Profile";

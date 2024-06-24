@@ -2,11 +2,8 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import { Route, Switch } from "react-router-dom";
 import { ConnectedRouter as Router } from "connected-react-router";
-import { history } from "../redux";
+import { createBrowserHistory } from "history";
 import { ToastContainer } from "react-toastify";
-import Doctor from "../routes/Doctor";
-import VerifyEmail from "./Patient/VerifyEmail";
-import { BrowserRouter } from 'react-router-dom';
 import {
   userIsAuthenticated,
   userIsNotAuthenticated,
@@ -15,36 +12,26 @@ import {
 import { path } from "../utils";
 
 import Home from "../routes/Home";
-
 import Login from "./Auth/Login";
 import Signup from "./Auth/Signup";
-
 import System from "../routes/System";
-
-import { CustomToastCloseButton } from "../components/CustomToast";
 import HomePage from "./HomePage/HomePage.js";
-
 import CustomScrollbars from "../components/CustomScrollbars";
-
 import DetailDoctor from "./Patient/Doctor/DetailDoctor";
 import DetailSpecialty from "./Patient/Specialty/DetailSpecialty";
 import DetailClinic from "./Patient/Clinic/DetailClinic";
-
 import NotFound from "./System/NotFound";
-import SignUp from "./Auth/Signup";
-
+import VerifyEmail from "./Patient/VerifyEmail";
 import ForgotPassword from "./Auth/ForgotPassword";
 import RetrievePassword from "./Auth/RetrievePassword";
-
 import ListSpecialty from "./HomePage/SectionList/ListSpecialty";
 import ListOutStandingDoctor from "./HomePage/SectionList/ListOutStandingDoctor";
 import ListMedicalFacility from "./HomePage/SectionList/ListMedicalFacility";
-
 import AdminDashboard from "./AdminDashboard/AdminDashboard";
 import indexAdminDashboard from "./AdminDashboard/indexAdminDashboard";
-
 import Profile from "./Patient/Profile";
-import { createBrowserHistory } from "history";
+
+import { CustomToastCloseButton } from "../components/CustomToast";
 
 const browserHistory = createBrowserHistory();
 
@@ -70,7 +57,7 @@ class App extends Component {
   render() {
     return (
       <div>
-        <Router history={browserHistory}>  
+        <Router history={browserHistory}>
           <div className="main-container">
             <div className="content-container">
               <CustomScrollbars style={{ height: "100vh", width: "100%" }}>
@@ -90,9 +77,7 @@ class App extends Component {
                     path={path.RETRIEVE_PASSWORD}
                     component={RetrievePassword}
                   />
-               
                   <Route path={path.HOMEPAGE} component={HomePage} />
-
                   <Route path={path.DETAIL_DOCTOR} component={DetailDoctor} />
                   <Route
                     path={path.DETAIL_SPECIALTY}
@@ -118,14 +103,11 @@ class App extends Component {
                     exact
                     component={ListOutStandingDoctor}
                   />
-
                   <Route path={path.PROFILE} component={Profile} />
-
                   <Route
                     path={path.ADMIN_DASHBOARD}
                     component={userIsAuthenticated(indexAdminDashboard)}
                   />
-
                   <Route path="*">
                     <NotFound />
                   </Route>
@@ -143,6 +125,7 @@ class App extends Component {
               pauseOnFocusLoss
               draggable
               pauseOnHover
+              closeButton={<CustomToastCloseButton />}
             />
           </div>
         </Router>
@@ -151,15 +134,11 @@ class App extends Component {
   }
 }
 
-const mapStateToProps = (state) => {
-  return {
-    started: state.app.started,
-    isLoggedIn: state.user.isLoggedIn,
-  };
-};
+const mapStateToProps = (state) => ({
+  started: state.app.started,
+  isLoggedIn: state.user.isLoggedIn,
+});
 
-const mapDispatchToProps = (dispatch) => {
-  return {};
-};
+const mapDispatchToProps = (dispatch) => ({});
 
 export default connect(mapStateToProps, mapDispatchToProps)(App);

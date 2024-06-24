@@ -1,5 +1,5 @@
 import PropTypes from "prop-types";
-import { Link as RouterLink } from "react-router-domv6";
+import { Link as RouterLink } from "react-router-dom";
 // material
 import { Box } from "@mui/material";
 

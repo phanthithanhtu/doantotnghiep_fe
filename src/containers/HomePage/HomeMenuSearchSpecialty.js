@@ -1,7 +1,7 @@
 import React from "react";
 import Menu from "@material-ui/core/Menu";
 import MenuItem from "@material-ui/core/MenuItem";
-import { useHistory } from "react-router-dom";
+import { useNavigate  } from "react-router-dom";
 
 import { makeStyles } from "@material-ui/core/styles";
 
@@ -27,7 +27,7 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 const HomeMenuSearchSpecialty = (props) => {
-  let history = useHistory();
+  let history = useNavigate ();
   const classes = useStyles();
   //   const [anchorEl, setAnchorEl] = React.useState(null);
   //   const open = Boolean(anchorEl);

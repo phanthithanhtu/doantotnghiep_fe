@@ -8,7 +8,7 @@ import {
 import { filter } from "lodash";
 import { sentenceCase } from "change-case";
 import { useState, useEffect } from "react";
-import { Link as RouterLink } from "react-router-domv6";
+import { Link as RouterLink } from "react-router-dom";
 import { toast } from "react-toastify";
 // material
 import {

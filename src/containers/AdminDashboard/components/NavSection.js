@@ -4,7 +4,7 @@ import {
   NavLink as RouterLink,
   matchPath,
   useLocation,
-} from "react-router-domv6";
+} from "react-router-dom";
 // material
 import { alpha, useTheme, styled } from "@mui/material/styles";
 import {

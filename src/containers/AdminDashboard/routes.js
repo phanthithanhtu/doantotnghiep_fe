@@ -1,4 +1,4 @@
-import {  useRoutes } from "react-router-domv6";
+import {  useRoutes } from "react-router-dom";
 // layouts
 import DashboardLayout from "./layouts/dashboard";
 

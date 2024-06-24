@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { useHistory } from "react-router-dom";
+import { useNavigate  } from "react-router-dom";
 
 import Container from "@material-ui/core/Container";
 import { makeStyles } from "@material-ui/core/styles";
@@ -68,7 +68,7 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 const RetrievePassword = () => {
-  let history = useHistory();
+  let history = useNavigate ();
   const [values, setValues] = React.useState({
     newPassword: "",
     showNewPassword: false,

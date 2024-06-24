@@ -10,7 +10,7 @@ import SendIcon from "@material-ui/icons/Send";
 import PriorityHighIcon from "@material-ui/icons/PriorityHigh";
 
 import { useState, useEffect } from "react";
-import { useHistory } from "react-router-dom";
+import { useNavigate} from "react-router-dom";
 
 import { getAllSpecialty } from "../../../services/userService";
 // import { connect } from "react-redux";
@@ -83,7 +83,7 @@ const ListMedicalFacility = () => {
     fetchDataAllClinic();
   }, []);
 
-  let history = useHistory();
+  let history = useNavigate();
 
   // const handleViewDetailClinic = (clinic) => {
   //   history.push(`/detail-clinic/${clinic.id}`);
